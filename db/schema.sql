@@ -4,7 +4,7 @@ DROP DATABASE IF EXISTS authdb;
 CREATE DATABASE authdb;
 
 
-\c authdb
+\c authdb;
 
 DROP TABLE IF EXISTS users;
 
@@ -28,7 +28,7 @@ CREATE TABLE users (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     user_type VARCHAR(20) NOT NULL DEFAULT 'student'
 );
-\d users;
+-- \d users;
 
 --                                         Table "public.users"
 --     Column     |           Type           | Collation | Nullable |              Default              
@@ -64,7 +64,7 @@ CREATE TABLE tutors (
   description_subject VARCHAR(255),
   level VARCHAR
 );
-\d tutors;
+-- \d tutors;
 
 --                                           Table "public.tutors"
 --        Column        |          Type          | Collation | Nullable |              Default               
@@ -99,7 +99,7 @@ CREATE TABLE students (
   remote BOOLEAN,
   level VARCHAR
 );
-\d students
+-- \d students
 
 --                                     Table "public.students"
 --    Column    |       Type        | Collation | Nullable |               Default                
@@ -129,7 +129,7 @@ CREATE TABLE student_reviews (
   student_id INTEGER REFERENCES students(id),
   ratings INTEGER
 );
-\d student_reviews;
+-- \d student_reviews;
 --                                        Table "public.student_reviews"
 --       Column       |       Type        | Collation | Nullable |                   Default                   
 -- -------------------+-------------------+-----------+----------+---------------------------------------------
