@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const { generateToken } = require('../utils/token')
 const { findUserByUsername, createUser } = require('../queries/users')
 const { authenticateToken } = require('../middlewares/authenticateToken')
-const auth = express.Router()
+const auth = express.Router();
 
 // Login route
 auth.post('/login', async (req, res) => {
