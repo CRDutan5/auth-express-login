@@ -8,7 +8,6 @@ CREATE DATABASE authdb;
 
 DROP TABLE IF EXISTS users;
 
--- added user_type
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     is_tutor BOOLEAN,
@@ -19,25 +18,23 @@ CREATE TABLE users (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     name VARCHAR(255),
-    _is_enrolled BOOLEAN,
-    _is_booked BOOLEAN,
+    is_enrolled BOOLEAN,
+    is_booked BOOLEAN,
     subject VARCHAR(255),
-    remote BOOLEAN
+    is_remote BOOLEAN
 );
 
--- user_type "teachers"
 CREATE TABLE requests (
   student_id INTEGER,
   tutor_id INTEGER,
   tutor_accepts BOOLEAN
 );
 
--- DROP TABLE IF EXISTS student_reviews;
 CREATE TABLE student_reviews (
   id SERIAL PRIMARY KEY,
   assigned_tutor_id INTEGER REFERENCES tutors(id),
   subject VARCHAR(255),
   description VARCHAR(255),
   student_id INTEGER REFERENCES students(id),
-  ratings INTEGER
+  ratings INTEGER CHECK (ratings >= 1 AND ratings <= 5)
 );
