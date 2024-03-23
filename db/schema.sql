@@ -25,16 +25,20 @@ CREATE TABLE users (
 );
 
 CREATE TABLE requests (
+  id SERIAL PRIMARY KEY,
   student_id INTEGER,
   tutor_id INTEGER,
-  tutor_accepts BOOLEAN
+  accepted BOOLEAN,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (student_id) REFERENCES users(id),
+  FOREIGN KEY (tutor_id) REFERENCES users(id)
 );
 
 CREATE TABLE student_reviews (
   id SERIAL PRIMARY KEY,
-  assigned_tutor_id INTEGER REFERENCES tutors(id),
+  assigned_tutor_id INTEGER REFERENCES users(id),
   subject VARCHAR(255),
   description VARCHAR(255),
-  student_id INTEGER REFERENCES students(id),
+  student_id INTEGER REFERENCES users(id),
   ratings INTEGER CHECK (ratings >= 1 AND ratings <= 5)
 );
