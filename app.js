@@ -9,6 +9,8 @@ const authController = require('./controllers/authController')
 // CONFIGURATION
 const app = express()
 
+const requestsController = require("./controllers/requestsController")
+
 // MIDDLEWARE
 app.use(
   cors({
@@ -29,7 +31,9 @@ app.use((req, res, next) => {
 
 app.use('/api/users', userController)
 app.use('/api/auth', authController)
+app.use('/api/requests', requestsController )
 
+// IMPORT REQUESTS AND REVIEWS
 // ROUTES
 app.get('/', (req, res) => {
   res.send('Welcome to Basic Express Server')
