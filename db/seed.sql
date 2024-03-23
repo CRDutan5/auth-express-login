@@ -11,11 +11,11 @@
 INSERT INTO users (is_tutor, profile_pic, username, password_hash, email, name, is_enrolled, is_booked, subject, is_remote)
 VALUES
     (TRUE, 'profile1.jpg', 'demo_tutor', '$2b$10$.z68x3792U9LyBwmghfsKexstMO7i0SeNCoDmeJa7bEFPQBnZU3bK', 'demo_tutor@example.com', 'Jane Doe', FALSE, TRUE, 'Mathematics', TRUE),
-    -- (FALSE, 'profile2.jpg', 'demo_student', 'replace with password-hash', 'demo_student@example.com', 'John Smith', TRUE, FALSE, 'Mathematics', TRUE);
+    (FALSE, 'profile2.jpg', 'demo_student', '$2b$10$L5QiYCI6r9hddL3aRdAWTO6c7wj6aXgsjSCaDJ00kLWnwgTJ9o4TG', 'demo_student@example.com', 'John Smith', TRUE, FALSE, 'Mathematics', TRUE);
 
 -- Inserting a request where the tutor accepts
-INSERT INTO requests (student_id, tutor_id, tutor_accepts) 
-VALUES (1, 1, TRUE);
+INSERT INTO requests (student_id, tutor_id, accepted, created_at) 
+VALUES (1, 1, TRUE, NOW());
 
 -- Inserting a review for a student
 INSERT INTO student_reviews (assigned_tutor_id, subject, description, student_id, ratings) 
