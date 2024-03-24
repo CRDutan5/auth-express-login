@@ -13,7 +13,7 @@ CREATE TABLE users (
     is_tutor BOOLEAN,
     profile_pic TEXT,
     name VARCHAR(255) NOT NULL,
-    user_name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
