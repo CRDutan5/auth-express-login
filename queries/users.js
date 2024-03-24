@@ -18,11 +18,11 @@ const findUserByUsername = async (username) => {
   }
 }
 
-// probably need to add is_tutor
+// probably need to add is_tutor (to frontend as well)
 const createUser = async ({ user_name, passwordHash, email }) => {
   const query = `
       INSERT INTO users (user_name, password_hash, email)
-      VALUES ($1, $2, $3, $4)
+      VALUES ($1, $2, $3 )
       RETURNING id, username, email; 
     `
   const newUser = await db.one(query, [user_name, passwordHash, email])
