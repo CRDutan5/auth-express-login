@@ -1,4 +1,5 @@
 const db = require('../db/dbConfig')
+
 /**
  * Finds a user by their username.
  * @param {string} username - The username of the user to find.
@@ -17,10 +18,11 @@ const findUserByUsername = async (username) => {
   }
 }
 
+// probably need to add is_tutor
 const createUser = async ({ username, passwordHash, email }) => {
   const query = `
       INSERT INTO users (username, password_hash, email)
-      VALUES ($1, $2,$3)
+      VALUES ($1, $2, $3)
       RETURNING id, username, email; 
     `
   const newUser = await db.one(query, [username, passwordHash, email])

@@ -1,11 +1,14 @@
-const express = require('express')
-const requests = express.Router()
+// requestsController.js
+const express = require('express');
+const requestsRouter = express.Router();
+const { getAllRequests } = require("../queries/requests");
 
-const {getAllRequests} = require("../queries/requests");
+// Define route handler for /api/requests
+requestsRouter.get('/:id', async (req, res) => {
+  const { id } = req.params;
 
-requests.get('/', async (req, res) => {
-    const allRequests = await getAllRequests();
-    if (allRequests[0])res.status(200).json(allRequests)
-})
+  const requests = await getAllRequests(id);
+  res.json(requests);
+});
 
-module.exports = requests
+module.exports = requestsRouter;
