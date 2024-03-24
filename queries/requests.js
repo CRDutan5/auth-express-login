@@ -1,11 +1,11 @@
 // queries/requests.js
 const db = require('../db/dbConfig');
 
-const getAllRequests = async (tutorId) => {
+const getRequestsById = async (tutorId) => {
     console.log("query", tutorId)
     try {
         const tutorRequests = await db.any(
-            "SELECT student.user_name AS student_name, student.id AS student_id, requests.accepted FROM requests INNER JOIN users AS tutor ON requests.tutor_id = tutor.id INNER JOIN users AS student ON requests.user_id = student.id WHERE tutor.id = $1",
+            "SELECT student.username AS student_name, student.id AS student_id, requests.accepted FROM requests INNER JOIN users AS tutor ON requests.tutor_id = tutor.id INNER JOIN users AS student ON requests.user_id = student.id WHERE tutor.id = $1",
             [tutorId]
         );
         console.log(tutorRequests)
@@ -16,4 +16,4 @@ const getAllRequests = async (tutorId) => {
     }
 };
 
-module.exports = { getAllRequests };
+module.exports = { getRequestsById };
