@@ -8,7 +8,7 @@
 
 -- seed for a user who is a tutor named Jane Doe who teaches Mathematics remotely and
 -- a student named John Smith who is enrolled in a Mathematics course remotely
-INSERT INTO users (is_tutor, profile_pic, user_name, password_hash, email, name, is_enrolled, is_booked, subject, is_remote)
+INSERT INTO users (is_tutor, profile_pic, username, password_hash, email, name, is_enrolled, is_booked, subject, is_remote)
 VALUES
 
 -- TUTORS - users.id: 1,2,3
