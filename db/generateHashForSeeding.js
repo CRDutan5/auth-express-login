@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 
 // Replace 'your_plain_text_password' with the actual password you want to hash
-const password = 'password'
+const password = '12345'
 const saltRounds = 10
 
 bcrypt.hash(password, saltRounds, function (err, hash) {
