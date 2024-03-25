@@ -5,9 +5,12 @@ const csrf = require('csurf')
 const cookieParser = require('cookie-parser')
 const userController = require('./controllers/userController')
 const authController = require('./controllers/authController')
+const requestsRouter = require("./controllers/requestsController")
+const studentReviews = require("./controllers/studentreviewsController")
 
 // CONFIGURATION
 const app = express()
+
 
 // MIDDLEWARE
 app.use(
@@ -26,10 +29,13 @@ app.use((req, res, next) => {
   res.cookie('XSRF-TOKEN', req.csrfToken())
   next()
 })
-
+// ENDPOINTS
 app.use('/api/users', userController)
 app.use('/api/auth', authController)
+app.use('/api/requests', requestsRouter )
+app.use('/api/reviews', studentReviews)
 
+// IMPORT REQUESTS AND REVIEWS
 // ROUTES
 app.get('/', (req, res) => {
   res.send('Welcome to Basic Express Server')

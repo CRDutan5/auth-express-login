@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const { generateToken } = require('../utils/token')
 const { findUserByUsername, createUser } = require('../queries/users')
 const { authenticateToken } = require('../middlewares/authenticateToken')
-const auth = express.Router()
+const auth = express.Router();
 
 // Login route
 auth.post('/login', async (req, res) => {
@@ -25,12 +25,17 @@ auth.post('/login', async (req, res) => {
       secure: true,
       sameSite: 'strict',
     })
-
+// also return user's info
+// call query fx here that'll give specific info linked to that user based on username
+// display in front end
     res.status(200).json({
       message: 'Logged in successfully',
-      user: user.username,
-      id: user.id,
-      email: user.email,
+      // user: user.username,
+      // id: user.id,
+      // email: user.email,
+      user_details: {
+        ...user, password_hash: 'restricted'
+      }
     })
   } catch (error) {
     console.error(error)
