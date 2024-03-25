@@ -65,8 +65,34 @@ const createUser = async ({ username, password_hash, email, is_tutor }) => {
   return newUser
 }
 
+const deleteUser = async (username) => {
+  try {
+    const query = 'DELETE FROM users WHERE username = $1';
+    const deletedUser = await db.oneOrNone(query, username);
+    return deletedUser;
+  } catch (error) {
+    console.error('Error finding user by username:', error);
+    throw error;
+  }
+};
+
+const updateUser = async ({ id, username, password_hash, email, is_tutor }) => {
+  const query = `
+    UPDATE users 
+    SET username = $1, password_hash = $2, email = $3, is_tutor = $4
+    WHERE id = $5
+    RETURNING id, username, email, is_tutor; 
+  `;
+  const updatedUser = await db.one(query, [username, password_hash, email, is_tutor, id]);
+  return updatedUser;
+};
+
+
+
 module.exports = {
   findAllTutors,
   findUserByUsername,
   createUser,
+  deleteUser,
+  updateUser
 }
