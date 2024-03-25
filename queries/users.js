@@ -5,6 +5,31 @@ const db = require('../db/dbConfig')
  * @param {string} username - The username of the user to find.
  * @returns {Promise<object|null>} The user object if found, otherwise null.
  */
+// const findAllUsers = async (username) => {
+//   try {
+//     const query = 'SELECT * FROM users;'
+
+//     const user = await db.any(query, username)
+
+//     return user
+//   } catch (error) {
+//     console.error('Error finding user by username:', error)
+//     throw error
+//   }
+// }
+
+const findAllTutors = async () => {
+  try {
+    const query = 'SELECT profile_pic, name, subject, is_remote FROM users WHERE is_Tutor = TRUE;';
+    const tutors = await db.any(query);
+    return tutors;
+  } catch (error) {
+    console.error('Error finding tutors:', error);
+    throw error;
+  }
+};
+
+
 const findUserByUsername = async (username) => {
   try {
     const query = 'SELECT * FROM users WHERE username = $1'
@@ -41,6 +66,7 @@ const createUser = async ({ username, password_hash, email, is_tutor }) => {
 }
 
 module.exports = {
+  findAllTutors,
   findUserByUsername,
   createUser,
 }
